@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <center>
+        <h1>display_webpages</h1>
+        <table border="3px">
+
+            <tr>
+                <th>pk/id</th>
+                <th>name</th>
+                <th>author</th>
+                <th>Date</th>
+            </tr>
+        {% for ao in LAO %}
+
+            <tr>
+                <td>{{ao.pk}}</td>
+                <td>{{ao.name}}</td>
+                <td>{{ao.author}}</td>
+                <td>{{ao.date}}</td>
+
+
+
+
+            </tr>
+
+        {% endfor %}
+
+
+
+
+
+
+
+
+        </table>
+
+
+
+
+
+
+
+    </center>
+    
+</body>
+</html>

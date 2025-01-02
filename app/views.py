@@ -2,7 +2,9 @@ from django.shortcuts import render
 
 # Create your views here.
 from django.http import HttpResponse
+
 from app.models import *
+from django.db.models.functions import Length
 
 def insert_topic(request):
     tn=input('enter topic name')
@@ -70,10 +72,57 @@ def display_topics(request):
 
 def display_webpages(request):
     LWO=Webpage.objects.all()
+    LWO=Webpage.objects.filter(topic_name='Cricket')
+    LWO=Webpage.objects.exclude(topic_name='Cricket')
+    LWO=Webpage.objects.all()[0:3:1]
+    LWO=Webpage.objects.all()[2:5:1]
+    LWO=Webpage.objects.all()[::-1]
+    LWO=Webpage.objects.all().order_by('name')
+    
+    LWO=Webpage.objects.all().order_by('-name')
+    
+    LWO=Webpage.objects.all().order_by(Length('name'))
+    LWO=Webpage.objects.all().order_by(Length('name').desc())
+    LWO=Webpage.objects.all()
+    LWO=Webpage.objects.filter(name__startswith='h')
+    LWO=Webpage.objects.filter(name__endswith='d')
+    
+    LWO=Webpage.objects.filter(name__contains='a')
+    
+    LWO=Webpage.objects.filter(name__regex='^h\w+')
+    
+    LWO=Webpage.objects.filter(id__range=(1,4))
+
+    LWO=Webpage.objects.filter(id__in=(1,4))
+    
+    
+
+
+    
+    
+    
     d={'LWO':LWO}
     return render(request,'display_webpages.html',d)
 
 
+def display_access(request):
+    LAO=AccessRecord.objects.all()
+    LAO=AccessRecord.objects.filter(date='2025-01-02')
+    LAO=AccessRecord.objects.filter(date__year='2025')
+    LAO=AccessRecord.objects.filter(date__month='11')
+    LAO=AccessRecord.objects.filter(date__day='7')
+    LAO=AccessRecord.objects.filter(date__lt='2025-01-02')
+    LAO=AccessRecord.objects.filter(date__lte='2025-01-02')
+    LAO=AccessRecord.objects.filter(date__gt='2025-01-02')
+    LAO=AccessRecord.objects.filter(date__year__gte='2024')
+    
+    
+    
+
+    
+    
+    d={'LAO':LAO}
+    return render(request,'display_access.html',d)
 
 
 
