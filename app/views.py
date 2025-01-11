@@ -115,11 +115,7 @@ def display_access(request):
     LAO=AccessRecord.objects.filter(date__lte='2025-01-02')
     LAO=AccessRecord.objects.filter(date__gt='2025-01-02')
     LAO=AccessRecord.objects.filter(date__year__gte='2024')
-    
-    
-    
-
-    
+        
     
     d={'LAO':LAO}
     return render(request,'display_access.html',d)
@@ -128,3 +124,30 @@ def display_access(request):
 
 
 
+def update_webpages(request):
+    #Webpage.objects.filter(topic_name='Kabaddi').update(name='MOHIT')
+
+    #Webpage.objects.filter(topic_name='Cricket').update(name='ROHIT')
+    #Webpage.objects.filter(topic_name='BOXING').update(name='mike')
+
+    #Webpage.objects.filter(topic_name='Kabaddi').update(url='https://mohit.in',email='mohit@gmail.com')
+    #Webpage.objects.filter(name='Anand').update(topic_name='Cricket')
+    #Webpage.objects.filter(name='Hari').update(topic_name='Long Jumping')
+    #Webpage.objects.update_or_create(name='Anand',defaults={'email':'Anand@gmail.com'})
+    #Webpage.objects.update_or_create(name='ROHIT',defaults={'url':'https://rohit.com'})
+
+    CO=Topic.objects.get(topic_name='Chess')
+    #Webpage.objects.update_or_create(name='Anand',defaults={'topic_name':CO})
+    #Webpage.objects.update_or_create(name='Gukesh',defaults={'topic_name':CO})
+
+    
+    Webpage.objects.update_or_create(name='Mukesh',defaults={'url':'https://mukesh.in'})
+    
+    
+    
+
+
+
+    LWO=Webpage.objects.all()
+    d={'LWO':LWO}
+    return render(request,'display_webpages.html',d)
